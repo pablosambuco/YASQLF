@@ -1,5 +1,5 @@
 {
-  "key": "ctrl+shift+f", // El atajo de teclado que desees
+  "key": "ctrl+shift+f",
   "command": "yasqlf.formatSQL",
   "when": "editorTextFocus && editorLangId == 'sql'"
 }

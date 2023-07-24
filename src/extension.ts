@@ -6,13 +6,12 @@ export function activate(context: vscode.ExtensionContext) {
 	let disposable = vscode.commands.registerCommand('yasqlf.formatSQL', () => {
 	  const editor = vscode.window.activeTextEditor;
 	  if (editor) {
-		const {document, selection} = editor;
+		const document = editor.document;
+		const selection = editor.selection;
 		const code = document.getText(selection);
   
-		// Formatear el código SQL utilizando la función que creamos
 		const formattedCode = formatSQL(code);
-  
-		// Reemplazar el texto seleccionado con el código formateado
+  	
 		editor.edit((editBuilder) => {
 		  editBuilder.replace(selection, formattedCode);
 		});
@@ -23,8 +22,12 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
 function formatSQL(code: string): string {
-	console.log("formateandiiiiiinnnnnnnn");
-	return sqlFormatter.format(code);
+	return sqlFormatter.format(code, {
+		tabWidth: 3,
+		useTabs: false,
+		keywordCase: 'upper',
+		linesBetweenQueries: 2,
+	  });
   }
 
 export function deactivate() {}
