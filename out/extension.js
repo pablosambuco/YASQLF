@@ -4,7 +4,7 @@ exports.deactivate = exports.activate = void 0;
 const vscode = require("vscode");
 const sqlFormatter = require("sql-formatter");
 function activate(context) {
-    let disposable = vscode.commands.registerCommand('yasqlf.formatSQL', () => {
+    let disposable = vscode.commands.registerCommand("yasqlf.formatSQL", () => {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
             const document = editor.document;
@@ -23,8 +23,15 @@ function formatSQL(code) {
     return sqlFormatter.format(code, {
         tabWidth: 3,
         useTabs: false,
-        keywordCase: 'upper',
-        linesBetweenQueries: 2,
+        keywordCase: "upper",
+        indentStyle: "standard",
+        logicalOperatorNewline: "after",
+        tabulateAlias: true,
+        commaPosition: "after",
+        linesBetweenQueries: 1,
+        expressionWidth: 100,
+        denseOperators: true,
+        newlineBeforeSemicolon: false,
     });
 }
 function deactivate() { }
